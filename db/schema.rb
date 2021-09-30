@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_30_135757) do
+ActiveRecord::Schema.define(version: 2021_09_30_140617) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 2021_09_30_135757) do
     t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "comment"
+    t.string "username"
+    t.bigint "actor_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["actor_id"], name: "index_comments_on_actor_id"
   end
 
   create_table "contracts", force: :cascade do |t|
@@ -68,6 +77,7 @@ ActiveRecord::Schema.define(version: 2021_09_30_135757) do
     t.index ["movie_id"], name: "index_reviews_on_movie_id"
   end
 
+  add_foreign_key "comments", "actors"
   add_foreign_key "contracts", "actors"
   add_foreign_key "contracts", "movies"
   add_foreign_key "movies", "directors"
