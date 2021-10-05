@@ -3,5 +3,5 @@ class Review < ApplicationRecord
 
   validates :comment, presence: true
   validates :rating, presence: true
-  validates :username, presence: true, uniqueness: true
+  validates :username, presence: true
 end
