@@ -32,7 +32,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
  private
 
  def comment_params
-  params.require(:comment).permit(:comment, :username, :actor_id)
+  params.permit(:comment, :username, :rating, :actor_id)
  end
 
  def find_comment
